@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@200;300;400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-olive-light: #7F9A4E;
+  --color-olive: #556B2F;
+  --color-olive-dark: #3A4C1F;
+  
+  --color-beige-light: #FAF9F6;
+  --color-beige: #F5F1E8;
+  --color-beige-dark: #E8E2D2;
+  
+  --color-walnut-light: #8B6A52;
+  --color-walnut: #6B4F3B;
+  --color-walnut-dark: #4C3627;
+  
+  --color-stone-light: #A0A0A0;
+  --color-stone: #808080;
+  --color-stone-dark: #606060;
+  
+  --color-luxury-charcoal: #121212;
+  --color-luxury-black: #0A0A0A;
+  
+  --font-serif: 'Cormorant Garamond', 'Playfair Display', serif;
+  --font-sans: 'Inter', 'Montserrat', sans-serif;
+}
+
+:root {
+  --olive: 85, 107, 47;
+  --beige: 245, 241, 232;
+  --walnut: 107, 79, 59;
+  --stone: 128, 128, 128;
+  --charcoal: 18, 18, 18;
+  
+  --bg-color: var(--beige);
+  --text-color: var(--charcoal);
+}
+
+body {
+  background-color: rgb(var(--bg-color));
+  color: rgb(var(--text-color));
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  transition: background-color 1.2s cubic-bezier(0.25, 1, 0.5, 1), color 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* Custom Utilities */
+.glass-nav {
+  background: rgba(245, 241, 232, 0.15);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-nav-dark {
+  background: rgba(18, 18, 18, 0.60);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px) saturate(120%);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-card-dark {
+  background: rgba(18, 18, 18, 0.4);
+  backdrop-filter: blur(12px) saturate(120%);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-modal {
+  background: rgba(18, 18, 18, 0.8);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.text-shadow-premium {
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* Lenis scroll styles */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overflow: clip;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(245, 241, 232);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(107, 79, 59, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(107, 79, 59, 0.6);
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
