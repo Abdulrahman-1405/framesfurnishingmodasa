@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { ArrowRight, Play } from 'lucide-react';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
+import heroImage from '../assets/hero.png';
+import heroVideo from '../assets/hero-video.mp4';
 
 export default function Hero({ onExplore }) {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isVideoReady, setIsVideoReady] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -49,34 +52,56 @@ export default function Hero({ onExplore }) {
   return (
     <section 
       id="hero-section" 
-      className="relative min-h-screen flex items-center justify-between px-6 md:px-12 lg:px-24 py-20 select-none overflow-hidden"
+      className="relative min-h-[80vh] sm:min-h-[85vh] lg:min-h-[88vh] flex items-center justify-between px-6 md:px-12 lg:px-24 py-12 sm:py-16 md:py-20 select-none overflow-hidden"
     >
+      {/* Background: image always visible underneath, video fades in on top once truly playing */}
+      <div className="absolute inset-0 w-full h-full z-0">
+        <img
+          src={heroImage}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          onPlaying={() => setIsVideoReady(true)}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+            isVideoReady ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
+      </div>
+
       {/* Background vignette with deep contrast overlay for video text legibility */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/25 to-black/10 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/25 to-black/10 pointer-events-none z-[1]" />
 
       {/* Main Text Content */}
       <div className="max-w-4xl z-10 text-white relative">
-        <span className="hero-subtitle block text-[10px] tracking-[0.6em] uppercase text-stone-light/80 mb-6 font-semibold">
-          FRAMES FURNISHING INTERIORS
+        <span className="hero-subtitle block text-[12px] sm:text-[13px] tracking-[0.6em] uppercase text-white mb-4 sm:mb-6 font-bold">
+          FRAMES FURNISHING
         </span>
         
-        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] leading-[1.05] select-none mb-8 text-shadow-premium">
-          <div className="overflow-hidden py-2">
+        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[4.75rem] leading-[1.05] select-none mb-6 sm:mb-8 text-shadow-premium">
+          <div className="overflow-hidden py-1 sm:py-2">
             <span className="hero-title-line block font-sans font-semibold uppercase tracking-[0.05em]">ARCHITECTURAL PURITY</span>
           </div>
-          <div className="overflow-hidden py-2">
+          <div className="overflow-hidden py-1 sm:py-2">
             <span className="hero-title-line block font-serif font-extralight italic text-beige-dark">Sensorial Luxury</span>
           </div>
         </h1>
         
-        <p className="hero-description text-sm sm:text-base font-light tracking-wide text-beige-light/80 max-w-lg leading-relaxed mb-12 text-shadow-premium">
+        <p className="hero-description text-sm sm:text-base font-light tracking-wide text-beige-light/80 max-w-lg leading-relaxed mb-8 sm:mb-12 text-shadow-premium">
           Timeless furniture carved from marble and solid American walnut, designed to interact with light and scale. Made in Carrara and Copenhagen.
         </p>
 
-        <div className="hero-actions flex flex-wrap items-center gap-6">
+        <div className="hero-actions flex flex-wrap items-center gap-4 sm:gap-6">
           <button 
             onClick={onExplore}
-            className="group px-8 py-4 bg-walnut text-white text-xs tracking-[0.2em] uppercase font-light transition-all duration-500 flex items-center space-x-3 border border-walnut hover:bg-transparent hover:text-white"
+            className="group px-6 sm:px-8 py-3 sm:py-4 bg-walnut text-white text-xs tracking-[0.2em] uppercase font-light transition-all duration-500 flex items-center space-x-3 border border-walnut hover:bg-transparent hover:text-white"
           >
             <span>Shop The Curation</span>
             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1.5 transition-transform duration-300" />
@@ -84,7 +109,7 @@ export default function Hero({ onExplore }) {
           
           <button 
             onClick={() => alert("Launching virtual showroom walkthrough...")}
-            className="group px-8 py-4 bg-white/5 border border-white/10 text-white text-xs tracking-[0.2em] uppercase font-light hover:bg-white/10 transition-colors flex items-center space-x-3 backdrop-blur-xs"
+            className="group px-6 sm:px-8 py-3 sm:py-4 bg-white/5 border border-white/10 text-white text-xs tracking-[0.2em] uppercase font-light hover:bg-white/10 transition-colors flex items-center space-x-3 backdrop-blur-xs"
           >
             <Play className="w-3 h-3 text-beige-dark fill-beige-dark group-hover:scale-110 transition-transform duration-300" />
             <span>Virtual Showroom</span>
@@ -93,7 +118,7 @@ export default function Hero({ onExplore }) {
       </div>
 
       {/* 3D Floating Parallax Panels */}
-      <div className="hidden lg:flex items-center justify-center relative w-1/3 h-[500px] z-10 pr-12">
+      <div className="hidden lg:flex items-center justify-center relative w-1/3 h-[420px] z-10 pr-12">
         {/* Floating Detail 1: Material showcase card */}
         <div 
           className="hero-floating glass-card p-6 w-[260px] rounded-2xl absolute transition-transform duration-300 ease-out select-none shadow-2xl"
@@ -151,7 +176,7 @@ export default function Hero({ onExplore }) {
       </div>
 
       {/* Decorative vertical coordinates overlay typical of museum collections */}
-      <div className="absolute right-8 bottom-8 text-[9px] tracking-[0.3em] font-light text-white/40 writing-vertical hidden md:block select-none">
+      <div className="absolute right-8 bottom-8 text-[9px] tracking-[0.3em] font-light text-white/40 writing-vertical hidden md:block select-none z-10">
         LAT. 43.7844° N / LONG. 10.1389° E
       </div>
     </section>

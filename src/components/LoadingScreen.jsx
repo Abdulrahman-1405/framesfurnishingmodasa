@@ -1,8 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 
 export default function LoadingScreen({ onComplete }) {
   const [progress, setProgress] = useState(0);
+  const onCompleteRef = useRef(onComplete);
+
+  // Always keep the latest onComplete without re-triggering the animation effect
+  useEffect(() => {
+    onCompleteRef.current = onComplete;
+  }, [onComplete]);
 
   useEffect(() => {
     // Prevent scrolling while loading
@@ -10,7 +16,7 @@ export default function LoadingScreen({ onComplete }) {
 
     // Animate progress number
     const obj = { value: 0 };
-    gsap.to(obj, {
+    const progressTween = gsap.to(obj, {
       value: 100,
       duration: 2.2,
       ease: 'power2.out',
@@ -22,7 +28,9 @@ export default function LoadingScreen({ onComplete }) {
         const tl = gsap.timeline({
           onComplete: () => {
             document.body.style.overflow = '';
-            onComplete();
+            if (typeof onCompleteRef.current === 'function') {
+              onCompleteRef.current();
+            }
           }
         });
 
@@ -48,16 +56,23 @@ export default function LoadingScreen({ onComplete }) {
     });
 
     // Subtitle / Brand characters entry
-    gsap.fromTo('.loader-brand span', 
+    const entryTween = gsap.fromTo('.loader-brand span', 
       { opacity: 0, y: 30 },
       { opacity: 1, y: 0, stagger: 0.08, duration: 1, ease: 'power3.out', delay: 0.2 }
     );
-  }, [onComplete]);
+
+    // Cleanup: cancel animations if this component unmounts early (e.g. dev double-mount)
+    return () => {
+      progressTween.kill();
+      entryTween.kill();
+      document.body.style.overflow = '';
+    };
+  }, []); // run exactly once on mount
 
   const brandText = "FRAMES FURNISHING";
 
   return (
-    <div className="loader-container fixed inset-0 z-[9999] flex flex-col justify-between p-12 bg-luxury-charcoal text-beige-light select-none font-sans" style={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' }}>
+    <div className="loader-container fixed inset-0 z-[9999] flex flex-col justify-between p-6 sm:p-8 md:p-12 bg-luxury-charcoal text-beige-light select-none font-sans" style={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' }}>
       {/* Top Header */}
       <div className="flex justify-between items-center text-xs tracking-[0.3em] text-stone-light opacity-60">
         <div>DESIGN ATELIER</div>
@@ -66,9 +81,9 @@ export default function LoadingScreen({ onComplete }) {
 
       {/* Center Brand */}
       <div className="text-center">
-        <h1 className="loader-brand text-4xl md:text-6xl font-light tracking-[0.8em] font-serif text-white flex justify-center items-center">
+        <h1 className="loader-brand text-xl sm:text-3xl md:text-6xl font-light tracking-[0.15em] sm:tracking-[0.35em] md:tracking-[0.8em] font-serif text-white flex justify-center items-center flex-wrap px-2">
           {brandText.split("").map((char, index) => (
-            <span key={index} className="inline-block" style={{ marginRight: char === " " ? "1.5rem" : "0" }}>
+            <span key={index} className="inline-block" style={{ marginRight: char === " " ? "0.6em" : "0" }}>
               {char}
             </span>
           ))}

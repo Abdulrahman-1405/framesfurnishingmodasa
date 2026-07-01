@@ -26,7 +26,7 @@ export default function Footer() {
         
         {/* Column 1: Brand Info */}
         <div className="lg:col-span-3 space-y-6">
-          <h2 className="text-2xl font-light tracking-[0.4em] font-serif text-white uppercase">AURA</h2>
+          <h2 className="text-2xl font-light tracking-[0.4em] font-serif text-white uppercase">FRAMES FURNISHING</h2>
           <p className="text-xs font-light leading-relaxed text-stone-light/60">
             A design atelier focusing on architectural purity and premium material sourcing. Sculpted in Carrara and Copenhagen.
           </p>
@@ -46,7 +46,7 @@ export default function Footer() {
             </a>
             <a href="#vimeo" className="p-2 border border-white/10 rounded-full hover:bg-white/5 text-white transition-colors">
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                <path d="M22.396 7.158c-.092 2.037-1.512 4.823-4.262 8.358-2.85 3.684-5.253 5.526-7.21 5.526-1.214 0-2.235-1.119-3.064-3.359L5.275 8.98C4.664 6.77 4.02 5.666 3.344 5.666c-.152 0-.68.32-1.58.963L.662 5.275c1.008-.885 2.008-1.77 3.003-2.654C5.076 1.34 6.13.627 6.837.475c1.654-.355 2.67.785 3.048 3.42.41 2.85.69 4.62.837 5.308.43 2.11.9 3.167 1.417 3.167.395 0 .99-.585 1.787-1.758.8-.1.745-1.165.745-1.63 2.457 0 1.124-.8 2.046-2.4 2.76-1.16 2.023-3.11 3.033-5.85 3.033-1.642 0-2.903-.787-3.784-2.362-1.74-3.094-1.92-5.274-.54-6.544 1.378-1.27 2.87-1.123 4.475.44z"/>
+                <path d="M22.396 7.164c-.1 2.226-1.65 5.271-4.658 9.13-3.107 3.98-5.735 5.97-7.884 5.97-1.33 0-2.454-1.228-3.37-3.685L4.66 10.65c-.67-2.42-1.39-3.63-2.16-3.63-.168 0-.75.35-1.75 1.05L0 6.85c1.1-.967 2.19-1.933 3.28-2.9 1.48-1.29 2.6-1.968 3.34-2.033 1.767-.166 2.85.905 3.24 3.212.42 2.487.71 4.032.87 4.635.48 2.19.998 3.286 1.56 3.286.435 0 1.09-.688 1.96-2.062.865-1.375 1.328-2.42 1.39-3.138.12-1.187-.34-1.782-1.39-1.782-.494 0-1.003.114-1.525.34 1.012-3.317 2.947-4.928 5.804-4.834 2.12.07 3.12 1.437 3.007 4.1z"/>
               </svg>
             </a>
           </div>
@@ -145,12 +145,12 @@ export default function Footer() {
           </span>
           <span className="flex items-center gap-1.5">
             <Mail className="w-3 h-3 text-stone-light/40" />
-            ATELIER@AURAMAISON.DESIGN
+            ATELIER@FRAMESFURNISHING.DESIGN
           </span>
         </div>
 
         <p className="text-center md:text-right uppercase">
-          © 2026 AURA MAISON. All Rights Reserved.
+          © 2026 FRAMES FURNISHING. All Rights Reserved.
         </p>
       </div>
 
