@@ -75,8 +75,8 @@ export default function LoadingScreen({ onComplete }) {
     <div className="loader-container fixed inset-0 z-[9999] flex flex-col justify-between p-6 sm:p-8 md:p-12 bg-luxury-charcoal text-beige-light select-none font-sans" style={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' }}>
       {/* Top Header */}
       <div className="flex justify-between items-center text-xs tracking-[0.3em] text-stone-light opacity-60">
-        <div>DESIGN ATELIER</div>
-        <div>EST. 2026</div>
+        <div>FURNITURE STUDIO</div>
+        <div>EST. 2020</div>
       </div>
 
       {/* Center Brand */}
